@@ -2,6 +2,9 @@
 """
 Example customization script for GBT sonification.
 Shows different ways to generate sounds for different moods.
+
+For one-off runs, the command line covers the same ground, e.g.
+    python gbt_sonification.py --pieces 5 --minutes 3 --out lofi_elements
 """
 
 from gbt_sonification import GBTSonifier

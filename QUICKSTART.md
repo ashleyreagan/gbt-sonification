@@ -4,7 +4,7 @@
 
 ### 1. Install Dependencies
 ```bash
-pip install astropy numpy scipy soundfile requests
+pip install -r requirements.txt
 ```
 
 ### 2. Run the Script
@@ -19,37 +19,54 @@ Your ambient pieces will be in the `gbt_ambient_audio/` folder!
 
 ## What You Get
 
-✓ **3 unique ambient pieces** (5 minutes each)
-✓ **High-quality WAV files** (44.1kHz)
-✓ **Ready for lofi production** - no additional processing needed
-✓ **Automatic generation** - runs with zero configuration
+✓ **3 ambient pieces** (5 minutes each): pulsar beat, spectral-line drone, continuum texture
+✓ **Stereo 24-bit WAV files** (44.1 kHz)
+✓ **Ready for lofi production**: no additional processing needed
+✓ **Zero configuration**: uses synthetic data unless you give it real files
+
+---
+
+## Customization
+
+Everything is a command-line flag, so you don't need to edit the code:
+
+```bash
+python gbt_sonification.py --minutes 10            # longer pieces
+python gbt_sonification.py --pieces 6              # more pieces
+python gbt_sonification.py --bpm 72                # match your project tempo
+python gbt_sonification.py --seed 42               # same result every time
+python gbt_sonification.py --out my_custom_folder  # different output folder
+python gbt_sonification.py --fits obs.fits         # use real GBT data
+```
+
+See all options with `python gbt_sonification.py --help`.
 
 ---
 
 ## Different Generation Modes
 
-Want different types of sounds? Use the examples script:
+Want preset collections? Use the examples script:
 
 ```bash
 python examples.py
 ```
 
 This gives you options for:
-- Deep space ambient (10-minute pieces)
-- Lofi elements (shorter 3-minute pieces)
-- Sample packs (variety of lengths)
-- Quick batches (lots of 2-minute pieces)
+- Deep space ambient (3 × 10-minute pieces)
+- Lofi elements (5 × 3-minute pieces)
+- Sample packs (a variety of lengths)
+- Quick batches (10 × 2-minute pieces)
 
 ---
 
 ## How to Use in Your Music
 
 ### For Lofi Hip-Hop:
-1. Import the WAV into your DAW
-2. Time-stretch to ~50-75% speed for more chill vibes
-3. Add vinyl crackle/tape saturation
-4. Layer under your drums and samples
-5. EQ out highs for warmth
+1. Generate with `--bpm` set to your project tempo
+2. Import the WAV into your DAW
+3. Time-stretch to ~50–75% speed for more chill vibes
+4. Add vinyl crackle/tape saturation
+5. Layer under your drums and samples, and EQ out highs for warmth
 
 ### For Ambient/Experimental:
 1. Use as-is for spacey backgrounds
@@ -59,52 +76,30 @@ This gives you options for:
 
 ### For Sampling:
 1. Chop interesting sections
-2. Create loops from repetitive parts
+2. Loop pulsar beats (they're on a fixed tempo)
 3. Reverse for unique textures
 4. Use as drone pads
-
----
-
-## Customization
-
-Edit `gbt_sonification.py` to change:
-
-**Duration** (line ~517):
-```python
-duration_minutes=5  # Change to any length you want
-```
-
-**Number of pieces** (line ~516):
-```python
-num_pieces=3  # Generate more or fewer files
-```
-
-**Output folder** (line ~512):
-```python
-GBTSonifier(output_dir="my_custom_folder")
-```
 
 ---
 
 ## What's Happening?
 
 The script:
-1. Tries to download real Green Bank Telescope data
-2. If that's not available, generates scientifically-accurate synthetic data
-3. Converts radio signals into audio using advanced sonification
-4. Applies effects (reverb, filtering) for ambient quality
-5. Saves as high-quality WAV files
+1. Loads the GBT data files you give it with `--fits`, or generates synthetic stand-in data
+2. Turns pulsars into beats, spectral lines into drones, and continuum drifts into slow modulation
+3. Adds compression and stereo reverb for ambient quality
+4. Saves stereo 24-bit WAV files
 
-**Either way, you get cosmic sounds perfect for your music!**
+See README.md for how to download real GBT data.
 
 ---
 
 ## Need Help?
 
 Check the full README.md for:
-- Detailed documentation
-- Troubleshooting tips
-- Advanced usage examples
+- Using real GBT data
+- How each sonification mode works
+- Using it as a Python module
 - DAW-specific production tips
 
 ---
