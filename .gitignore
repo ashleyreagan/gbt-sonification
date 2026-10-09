@@ -1,0 +1,15 @@
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+venv/
+
+# Generated audio and downloaded data
+*.wav
+*.fits
+gbt_ambient_audio/
+deep_space_ambient/
+lofi_elements/
+sample_pack/
+quick_batch/
